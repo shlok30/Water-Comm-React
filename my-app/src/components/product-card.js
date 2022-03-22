@@ -1,6 +1,27 @@
 import React from 'react'
+import { useUser } from '../context/user-context'
+import { useNavigate } from 'react-router-dom'
 
-const ProductCard = ({title,author,price}) => {
+const ProductCard = ({title,author,price,id}) => {
+    const {state,dispatch,addToCart} = useUser()
+    const encodedToken = state.encodedToken
+    const navigate = useNavigate()
+    
+    const handleClick = (dispatch) => {
+        if(!encodedToken){
+            navigate('/login')
+        }
+        if(prodExistsInCart.length > 0){
+            navigate('/cart')
+            return 
+        }
+        addToCart({id , title ,author, price},encodedToken,dispatch)
+        //dispatch({type : "CART" , payload : {id , title ,author, price} })
+    }
+
+    //checking if product is already present in the cart
+    const prodExistsInCart = state.cart.filter((prod) => prod['_id'] === id)
+
     return(
         <div className="card-container ">
             <div className="img-container badge">
@@ -15,7 +36,7 @@ const ProductCard = ({title,author,price}) => {
                 <p className="card-subtext">Rs {price}</p>
             </div>
             <div className="card-footer flex space-between m3-top">
-                <button className = "btn btn-secondary full-width"><a href="cart.html">Go to Cart</a></button>
+                <button className = {prodExistsInCart.length > 0 ? "btn btn-success full-width" : "btn btn-primary full-width"} onClick = {() => handleClick(dispatch)}>{prodExistsInCart.length > 0 ? "Go to Cart" : "Add to Cart"}</button>
             </div>
     </div>
     )

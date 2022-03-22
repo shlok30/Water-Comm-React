@@ -1,18 +1,33 @@
 import React, { useState } from 'react'
 import Nav from '../components/nav'
 import axios from "axios"
+import { useUser } from '../context/user-context'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
     
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
 
+    const {state, dispatch} = useUser()
+
+    const navigate = useNavigate()
+
+    console.log("User Context" , state )
+
     const handleClick = () => {
         console.log({email,password})
         axios
          .post("/api/auth/login",{email,password})
-         .then(res => console.log("It was a success",res))
+         .then(res => {
+            console.log("It was a success",res)
+            dispatch({type : "TOKEN" , payload : res.data.encodedToken})
+            dispatch({type : "CART" ,  payload : res.data.foundUser.cart})
+            dispatch({type:"WISHLIST" , payload : res.data.foundUser.wishlist})
+            navigate('/products')
+         })
          .catch(err => console.log(err))
+         
     }
 
     console.log("Email",email,"Password",password)
