@@ -3,19 +3,8 @@ import { useUser } from '../context/user-context'
 import axios from 'axios'
 
 const CartCard = ({qty,price,author,id,title}) => {
-    const {state} = useUser()
-    const updateQuantity = (id,encodedToken) => {
-        //console.log(encodedToken)
-        console.log(id)
-        axios
-         .post(`/api/user/cart/${id}`,{
-            action: {
-              type: "increment"
-            }
-          },{headers : { 'authorization' : encodedToken}})
-         .then((res) => console.log("It was a success",res.data))
-         .catch(err => console.log(err))
-    }
+    const {state,updateQuantity} = useUser()
+    
     return(
             <div className="card-container" style = {{width:"40%"}}>
                 <div className="horizontal-badge flex no-wrap">

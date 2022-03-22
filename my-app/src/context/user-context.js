@@ -32,25 +32,24 @@ const addToCart = ({id,title,author,price},encodedToken,dispatch) => {
     
 }
 
-/*const updateQuantity = (qty,id,encodedToken) => {
+const updateQuantity = (id,encodedToken) => {
     //console.log(encodedToken)
     console.log(id)
     axios
-     .post(`/api/user/cart/:${id}`,{
+     .post(`/api/user/cart/${id}`,{
         action: {
           type: "increment"
         }
       },{headers : { 'authorization' : encodedToken}})
      .then((res) => console.log("It was a success",res.data))
      .catch(err => console.log(err))
-} */
-
+} 
 
 const UserContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : []})
     console.log("user context state",state)
     return(
-        <UserContext.Provider value = {{state , dispatch , addToCart}}>
+        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity}}>
             {children}
         </UserContext.Provider>
     )
