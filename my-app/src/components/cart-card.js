@@ -1,9 +1,9 @@
 import React from 'react'
 import { useUser } from '../context/user-context'
-import axios from 'axios'
 
 const CartCard = ({qty,price,author,id,title}) => {
-    const {state,updateQuantity} = useUser()
+    const {state,updateQuantity,dispatch,deleteProduct} = useUser()
+    console.log("From Cart Card",title,qty)
     
     return(
             <div className="card-container" style = {{width:"40%"}}>
@@ -15,8 +15,11 @@ const CartCard = ({qty,price,author,id,title}) => {
                         <h4 className = "primary-text m2-top">{title}</h4>
                         <p className="card-subtitle m1 secondary-text m2-top" >Rs : {price}</p>
                         <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" min = '1' value = {qty} onChange = { (e) => updateQuantity(id,state.encodedToken)}  />
-                        <button className = "btn btn-error m2-top full-width">Remove from Cart</button>
+                        {/* <input type="number" id="quantity" name="quantity" min = '1' value = {qty} onChange = { (e) => updateQuantity(id,state.encodedToken)}  /> */}
+                        <span>{qty}</span>
+                        <button style = {{width:'1rem'}} onClick = {() => updateQuantity(id,state.encodedToken,'increment',dispatch,qty)}>+</button>
+                        <button style = {{width:'1rem'}} disabled = {qty === 1} onClick = {() => updateQuantity(id,state.encodedToken,'decrement',dispatch,qty)}>-</button>
+                        <button className = "btn btn-error m2-top full-width" onClick = {() => deleteProduct(id,state.encodedToken,dispatch)}>Remove from Cart</button>
                         <button className = "btn btn-success m2-top full-width"><a href = "wishlist.html">Move to Wishlist</a></button>
                     </div>
                 </div>

@@ -8,9 +8,7 @@ const userReducer = (state,{type,payload}) => {
         case "TOKEN":
             return {...state,encodedToken : payload}
         case "CART":
-            if(payload.length > 0){
-                return {...state,cart : [...payload]}
-            }
+                return {...state,cart : [...payload]}  
         case "WISHLIST":
             return {...state,wishlist : [...state.wishlist,...payload]}
         default:
@@ -32,24 +30,44 @@ const addToCart = ({id,title,author,price},encodedToken,dispatch) => {
     
 }
 
-const updateQuantity = (id,encodedToken) => {
+const updateQuantity = (id,encodedToken,updateType,dispatch,qty) => {
     //console.log(encodedToken)
-    console.log(id)
-    axios
-     .post(`/api/user/cart/${id}`,{
-        action: {
-          type: "increment"
-        }
+    if(qty === 1 && updateType === 'decrement'){
+        console.log("Landed in danger zone")
+        return
+    }
+    else{
+        axios
+        .post(`/api/user/cart/${id}`,{
+            action: {
+            type: updateType
+            }
       },{headers : { 'authorization' : encodedToken}})
-     .then((res) => console.log("It was a success",res.data))
-     .catch(err => console.log(err))
-} 
+        .then((res) => {
+            console.log("It was a success",res.data.cart)
+            dispatch({type : "CART" , payload : res.data.cart} )
+        })
+        .catch(err => console.log(err))
+    }
+    
+}
+
+const deleteProduct = (id,encodedToken,dispatch) => {
+    //console.log("Clicked")
+    axios
+    .delete(`/api/user/cart/${id}`,{headers : { 'authorization' : encodedToken}})
+    .then((res) => {
+        console.log("Successfully Deleted",res.data)
+        dispatch({type : "CART" , payload : res.data.cart} )
+    })
+    .catch(err => console.log(err))
+}
 
 const UserContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : []})
     console.log("user context state",state)
     return(
-        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity}}>
+        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity,deleteProduct}}>
             {children}
         </UserContext.Provider>
     )

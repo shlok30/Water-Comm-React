@@ -4,7 +4,8 @@ import { useUser } from '../context/user-context'
 const Nav = () => {
     const {state} = useUser()
     //console.log("Nav state",state)
-    const numberOfCartItems = state.cart.length
+    const sumOfItems = (sum,curr) => sum + curr.qty
+    const numberOfCartItems = state.cart.reduce(sumOfItems,0)
     return(
         <nav className = "navigation flex gap-xl align-center full-width">
             <div className="nav-brand">Water-Commerce</div>

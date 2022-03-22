@@ -22,7 +22,7 @@ const LoginPage = () => {
          .then(res => {
             console.log("It was a success",res)
             dispatch({type : "TOKEN" , payload : res.data.encodedToken})
-            dispatch({type : "CART" ,  payload : res.data.foundUser.cart})
+            //dispatch({type : "CART" ,  payload : res.data.foundUser.cart})
             dispatch({type:"WISHLIST" , payload : res.data.foundUser.wishlist})
             navigate('/products')
          })
