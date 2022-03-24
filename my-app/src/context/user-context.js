@@ -10,7 +10,7 @@ const userReducer = (state,{type,payload}) => {
         case "CART":
                 return {...state,cart : [...payload]}  
         case "WISHLIST":
-            return {...state,wishlist : [...state.wishlist,...payload]}
+            return {...state,wishlist : [...payload]} // confirm if we update the entire state everytime or only append the latest item
         default:
             break
 
@@ -63,11 +63,22 @@ const deleteProduct = (id,encodedToken,dispatch) => {
     .catch(err => console.log(err))
 }
 
+const addToWishlist = (product,encodedToken,dispatch) => {
+    //console.log("Wishlist clicked",product)
+    axios
+    .post("/api/user/wishlist",{"product" : product},{headers : { 'authorization' : encodedToken}})
+    .then((res) => {
+        console.log("successfully added to Wislist",res.data)
+        dispatch({type : "WISHLIST" , payload : res.data.wishlist})
+    })
+    .catch((err) => console.log(err))
+}
+
 const UserContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : []})
     console.log("user context state",state)
     return(
-        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity,deleteProduct}}>
+        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity, deleteProduct , addToWishlist }}>
             {children}
         </UserContext.Provider>
     )
