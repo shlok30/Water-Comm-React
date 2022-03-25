@@ -1,51 +1,60 @@
-.App {
+.cards-preview,.card-container .img-container{
+  flex-basis:50%;
+}
+
+.card-container img{
+  height: 100%;
+}
+
+#quantity{
+  width: 2rem;
+  margin-left:5px;
+}
+
+.primary-text{
+  color:var(--primary-color)
+}
+
+.secondary-text{
+  color:var(--secondary-color)
+}
+
+.price{
+  border:1px solid black
+}
+
+.footer {
+  background-color: var(--primary-color);
+  padding: 3rem 1rem;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #22201c;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: white;
+  border-top-right-radius: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.side-bar {
+  border:1px solid black;
+  flex-basis:15rem;
+} 
+
+.radio-btn {
+  height:1.25rem;
+  width:1.25rem;
 }
 
-.brand-title {
-  font-size: 3rem;
-  color: #d9d9d9;
+.abosulute-footer{
+  position: absolute;
+  bottom:0;
+  width:100%;
 }
 
-.brand-title span {
-  color: #ffde59;
+.auth-wrapper{
+  height:100%
 }
 
-.brand-description {
-  font-size: 1.4rem;
+.auth-container{
+  width:30%
 }
 
-.links {
-  display: flex;
-}
-
-.links a {
-  color: #d9d9d9;
-  font-size: 1.2rem;
-  margin: 1rem;
+a{
+  color:white
 }
