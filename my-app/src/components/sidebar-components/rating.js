@@ -7,7 +7,7 @@ const Rating = ({rating}) => {
     return(
         <div>
             <div className = "padding-s-block m2-top flex">
-                <input type = "radio" className = "radio-btn center-text" name = "rating" value = {rating} onChange = {() => dispatch({type : "RATING" , payload : rating})}/>
+                <input type = "radio" className = "radio-btn center-text" name = "rating" value = {rating} checked = {rating === state.rating} onChange = {() => dispatch({type : "RATING" , payload : rating})}/>
                 <p className = "grow-1">{rating} Stars and Above</p>
             </div>
         </div>

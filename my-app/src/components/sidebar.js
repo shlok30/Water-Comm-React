@@ -3,14 +3,16 @@ import Categories from './sidebar-components/categories-component'
 import Rating from './sidebar-components/rating'
 import Range from './sidebar-components/range'
 import RadioSort from './sidebar-components/radio-sort'
+import { useProductListFunction } from '../context/product-listing-context'
 
 
 const Sidebar = () => {
+    const {dispatch} = useProductListFunction()
     return(
         <aside className = "side-bar">
             <div className = "flex space-between padding-m">
                 <strong>Filter</strong>
-                <p>Clear</p>
+                <p style = {{cursor : "pointer"}} onClick = {() => dispatch({type : "RESET"})}>Clear</p>
             </div>
             <Range />
             <div className = "padding-m m2-top">
