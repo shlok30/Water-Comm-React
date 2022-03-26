@@ -1,5 +1,6 @@
 import React from 'react'
 import { useUser } from '../context/user-context'
+import { Link } from "react-router-dom";
 
 const Nav = () => {
     const {state} = useUser()
@@ -16,12 +17,16 @@ const Nav = () => {
             <div className = "flex gap-xl flex-center grow-1" >
                 <a href = "login.html"><button className="btn btn-secondary">Login</button></a>
                 <div class = "icon badge">
-	                <span class="material-icons md-40">favorite_border</span>
-	                <span class = "number top-right">{numberOfWishlistItems}</span>
+                    <Link to = "/wishlist">
+	                    <span class="material-icons md-40">favorite_border</span>
+	                    <span class = "number top-right">{numberOfWishlistItems}</span>
+                    </Link>
                 </div>
                 <div class = "icon badge">
-	                <span class="material-icons md-40">shopping_cart</span>
-	                <span class = "number top-right">{numberOfCartItems}</span>
+                    <Link to = "/cart">
+	                    <span class="material-icons md-40">shopping_cart</span>
+	                    <span class = "number top-right">{numberOfCartItems}</span>
+                    </Link>
                 </div>
             </div>
         </nav>
