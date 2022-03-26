@@ -56,7 +56,7 @@ const ProductCard = ({title,author,price,id}) => {
                 <button className = {prodExistsInCart.length > 0 ? "btn btn-success full-width" : "btn btn-primary full-width"} onClick = {() => handleClick(dispatch)}>{prodExistsInCart.length > 0 ? "Go to Cart" : "Add to Cart"}</button>
             </div>
             <div className="card-footer flex space-between m1-top">
-                <button className = "btn btn-error full-width" onClick = {handleWishlistButton} >{prodExistsInWishlist.length > 0 ? "Go to Wishlist" : "Add to Wishlist"}</button>
+                <button className = "btn btn-error full-width" onClick = {handleWishlistButton}>{prodExistsInWishlist.length > 0 ? "Go to Wishlist" : "Add to Wishlist"}</button>
             </div>
             
     </div>

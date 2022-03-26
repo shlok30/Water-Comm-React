@@ -2,7 +2,7 @@ import React from 'react'
 import { useUser } from '../context/user-context'
 
 const CartCard = ({qty,price,author,id,title}) => {
-    const {state,updateQuantity,dispatch,deleteProduct} = useUser()
+    const {state,updateQuantity,dispatch,deleteProduct,moveToWishlist} = useUser()
     console.log("From Cart Card",title,qty)
     
     return(
@@ -20,7 +20,7 @@ const CartCard = ({qty,price,author,id,title}) => {
                         <button style = {{width:'1rem'}} onClick = {() => updateQuantity(id,state.encodedToken,'increment',dispatch,qty)}>+</button>
                         <button style = {{width:'1rem'}} disabled = {qty === 1} onClick = {() => updateQuantity(id,state.encodedToken,'decrement',dispatch,qty)}>-</button>
                         <button className = "btn btn-error m2-top full-width" onClick = {() => deleteProduct(id,state.encodedToken,dispatch)}>Remove from Cart</button>
-                        <button className = "btn btn-success m2-top full-width"><a href = "wishlist.html">Move to Wishlist</a></button>
+                        <button className = "btn btn-success m2-top full-width" onClick = {() => moveToWishlist(id,state.encodedToken,dispatch)}>Move to Wishlist</button>
                     </div>
                 </div>
             </div>

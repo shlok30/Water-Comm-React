@@ -74,15 +74,22 @@ const addToWishlist = (product,encodedToken,dispatch) => {
     .catch((err) => console.log(err))
 }
 
+const moveToWishlist = (id,encodedToken,dispatch) => {
+    deleteProduct(id,encodedToken,dispatch)
+     .then(() => console.log("From move to wishlist"))
+     .catch(err => console.log(err))
+}
+
 const UserContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : []})
     console.log("user context state",state)
     return(
-        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity, deleteProduct , addToWishlist }}>
+        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity, deleteProduct , addToWishlist, moveToWishlist }}>
             {children}
         </UserContext.Provider>
     )
 }
+
 
 const useUser = () => useContext(UserContext)
 
