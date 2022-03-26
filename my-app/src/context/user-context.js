@@ -64,7 +64,7 @@ const deleteProduct = (id,encodedToken,dispatch) => {
 }
 
 const addToWishlist = (product,encodedToken,dispatch) => {
-    //console.log("Wishlist clicked",product)
+    console.log("Wishlist clicked",product)
     axios
     .post("/api/user/wishlist",{"product" : product},{headers : { 'authorization' : encodedToken}})
     .then((res) => {
@@ -74,17 +74,22 @@ const addToWishlist = (product,encodedToken,dispatch) => {
     .catch((err) => console.log(err))
 }
 
-const moveToWishlist = (id,encodedToken,dispatch) => {
-    deleteProduct(id,encodedToken,dispatch)
-     .then(() => console.log("From move to wishlist"))
-     .catch(err => console.log(err))
+const removeFromWishlist = (id,encodedToken,dispatch) => {
+    console.log("Id from removewishlist",id)
+    axios
+    .delete(`/api/user/wishlist/${id}`,{headers : { 'authorization' : encodedToken}})
+    .then(res => {
+        console.log("Successfully Deleted",res.data.wishlist)
+        dispatch({type : "WISHLIST" ,  payload : res.data.wishlist})
+    })
+    .catch(err => console.log(err => console.log(err)))
 }
 
 const UserContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : []})
     console.log("user context state",state)
     return(
-        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity, deleteProduct , addToWishlist, moveToWishlist }}>
+        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity, deleteProduct , addToWishlist, removeFromWishlist }}>
             {children}
         </UserContext.Provider>
     )

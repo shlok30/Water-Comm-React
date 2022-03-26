@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
 const ProductCard = ({title,author,price,id}) => {
-    const {state,dispatch,addToCart,addToWishlist} = useUser()
+    const {state,dispatch,addToCart,addToWishlist,removeFromWishlist} = useUser()
     const encodedToken = state.encodedToken
     const navigate = useNavigate()
     const location = useLocation()
-    //console.log("Locaton of Product Card",location.pathname)
+    console.log("Locaton of Product Card",location.pathname)
     
     const handleClick = (dispatch) => {
         if(!encodedToken){
@@ -22,22 +22,28 @@ const ProductCard = ({title,author,price,id}) => {
         //dispatch({type : "CART" , payload : {id , title ,author, price} })
     }
 
-    const handleWishlistButton = () => {
+    const handleWishlistButton = (e) => {
+        const typeOfAction = e.target.innerText
         if(!encodedToken){
             navigate('/login')
             return
         }
-        if(prodExistsInWishlist.length > 0){
+        if(typeOfAction === "Go to Wishlist"){
             navigate('/wishlist')
-            return
         }
-        addToWishlist({id,title,author,price},encodedToken,dispatch)
+        else if(typeOfAction === "Add to Wishlist"){
+            addToWishlist({_id : id ,title,author,price},encodedToken,dispatch)
+        }
+        else{
+            removeFromWishlist(id,encodedToken,dispatch)
+        }
+        
     }
 
     //checking if product is already present in the cart
     const prodExistsInCart = state.cart.filter((prod) => prod['_id'] === id)
     //checking if product is already present in wishlist
-    const prodExistsInWishlist = state.wishlist.filter((prod) => prod['id'] === id)
+    const prodExistsInWishlist = state.wishlist.filter((prod) => prod['_id'] === id)
 
     return(
         <div className="card-container ">
@@ -56,7 +62,7 @@ const ProductCard = ({title,author,price,id}) => {
                 <button className = {prodExistsInCart.length > 0 ? "btn btn-success full-width" : "btn btn-primary full-width"} onClick = {() => handleClick(dispatch)}>{prodExistsInCart.length > 0 ? "Go to Cart" : "Add to Cart"}</button>
             </div>
             <div className="card-footer flex space-between m1-top">
-                <button className = "btn btn-error full-width" onClick = {handleWishlistButton}>{prodExistsInWishlist.length > 0 ? "Go to Wishlist" : "Add to Wishlist"}</button>
+                <button className = "btn btn-error full-width" onClick = {handleWishlistButton}>{location.pathname === "/wishlist" ? "Remove from Wishlist" : prodExistsInWishlist.length > 0 ? "Go to Wishlist" : "Add to Wishlist"}</button>
             </div>
             
     </div>

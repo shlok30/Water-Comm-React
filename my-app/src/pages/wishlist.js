@@ -6,7 +6,7 @@ import { useUser } from '../context/user-context'
 
 const WishlistPage = () => {
     const {state,dispatch} = useUser()
-    const renderProductCards = () => state.wishlist.map(({id,title,author,price}) => <ProductCard title = {title} id = {id} author = {author} price = {price} key = {id} /> ) 
+    const renderProductCards = () => state.wishlist.map(({_id,title,author,price}) => <ProductCard title = {title} id = {_id} author = {author} price = {price} key = {_id} /> ) 
     return(
         <div>
             <Nav />
