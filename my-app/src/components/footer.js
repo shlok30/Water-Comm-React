@@ -1,10 +1,13 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import {useUser} from '../context/user-context'
 
 const Footer = () => {
     const {pathname} = useLocation()
+    const {state : {cart}} = useUser()
+    console.log("From footer",cart)
     return(
-        <footer className = {pathname === '/cart' ? "footer abosulute-footer" : "footer m6-top" }>
+        <footer className = {pathname === '/cart' && cart.length < 2 ? "footer abosulute-footer" : "footer m6-top" }>
             Made by Shlok
         </footer>
     )
