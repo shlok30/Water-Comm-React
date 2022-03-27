@@ -7,7 +7,7 @@ const Main = () => {
     const {productsList} = useProduct()
     const {state,dispatch} = useProductListFunction()
     const renderProducts = (prodList) => {
-        return prodList.map((prod) => <ProductCard key = {prod['_id']} title = {prod.title} author = {prod.author} price = {prod.price} id = {prod['_id']}/>)
+        return prodList.map((prod) => <ProductCard key = {prod['_id']} title = {prod.title} author = {prod.author} price = {prod.price} id = {prod['_id']} category = {prod.categoryName} rating = {prod.rating}/>)
     }
     const categoryFilter = (categories) => productsList.filter((item) => categories[item.categoryName])
     

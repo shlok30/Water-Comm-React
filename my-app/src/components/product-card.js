@@ -2,7 +2,7 @@ import React from 'react'
 import { useUser } from '../context/user-context'
 import { useNavigate } from 'react-router-dom'
 
-const ProductCard = ({title,author,price,id}) => {
+const ProductCard = ({title,author,price,id,category,rating}) => {
     const {state,dispatch,addToCart} = useUser()
     const encodedToken = state.encodedToken
     const navigate = useNavigate()
@@ -31,6 +31,12 @@ const ProductCard = ({title,author,price,id}) => {
             <div className="card-header m3-top">
                 <h4>{title}</h4>
                 <p className="card-subtitle m1">By {author}</p>
+            </div>
+            <div className="card-body m3-top">
+                <p className="card-subtext" style = {{textTransform : "capitalize"}}>{category}</p>
+            </div>
+            <div className="card-body m3-top">
+                <p className="card-subtext">Rating : {rating} Stars</p>
             </div>
             <div className="card-body m3-top">
                 <p className="card-subtext">Rs {price}</p>
