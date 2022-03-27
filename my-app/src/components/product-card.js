@@ -8,15 +8,19 @@ const ProductCard = ({title,author,price,id,category,rating}) => {
     const navigate = useNavigate()
     
     const handleClick = (dispatch) => {
-        if(!encodedToken){
-            navigate('/login')
+        if(!encodedToken){                   //User is not logged in
+            //navigate('/login')
+            dispatch({type:"ALERT"})
+            setTimeout(() => dispatch({type : "ALERT"}),1000)
         }
-        if(prodExistsInCart.length > 0){
-            navigate('/cart')
-            return 
-        }
-        addToCart({id , title ,author, price},encodedToken,dispatch)
-        //dispatch({type : "CART" , payload : {id , title ,author, price} })
+        else{                                // User is logged in
+            if(prodExistsInCart.length > 0){// User is logged in and item has already been added to cart
+                navigate('/cart')
+            }
+            else{                            // User is logged in and item has not been added to cart
+                addToCart({id , title ,author, price},encodedToken,dispatch)
+            }
+        }  
     }
 
     //checking if product is already present in the cart

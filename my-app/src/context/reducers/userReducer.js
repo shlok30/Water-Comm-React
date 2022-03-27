@@ -7,7 +7,9 @@ const userReducer = (state,{type,payload}) => {
         case "CART":
                 return {...state,cart : [...payload]}  
         case "WISHLIST":
-            return {...state,wishlist : [...state.wishlist,...payload]}
+            return {...state,wishlist : [...payload]}
+        case "ALERT":
+            return{...state,showLoginAlert : !state.showLoginAlert}
         default:
             break
 

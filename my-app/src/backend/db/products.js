@@ -72,7 +72,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "The Spectacular Spiderman",
+    title: "The Amazing Spiderman",
     author: "Stan Lee",
     price: "1200",
     categoryName: "fiction",

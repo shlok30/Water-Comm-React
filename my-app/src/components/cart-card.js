@@ -6,7 +6,7 @@ const CartCard = ({qty,price,author,id,title}) => {
     console.log("From Cart Card",title,qty)
     
     return(
-            <div className="card-container" style = {{width:"40%"}}>
+        <div className="card-container m1-top flex flex-column gap-m" style = {{width : "100%"}}>
                 <div className="horizontal-badge flex no-wrap">
                     <div className="img-container">
                         <img src="https://images.unsplash.com/photo-1643313947128-849e4da4fd5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2142&q=80"/>
@@ -23,7 +23,8 @@ const CartCard = ({qty,price,author,id,title}) => {
                         <button className = "btn btn-success m2-top full-width"><a href = "wishlist.html">Move to Wishlist</a></button>
                     </div>
                 </div>
-            </div>
+        </div>
+            
     )
 }
 

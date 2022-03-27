@@ -17,7 +17,7 @@ const CartPage = () => {
             <Nav />
             <div className="text-m center-text m5-top bold">My Cart</div>
             <div className = "container center-block m5-top flex space-between flex-center">
-                {renderCartCard()}
+                <div style = {{width:"40%"}}>{renderCartCard()}</div>
                 <div className = "padding-m price">
                     <TransactionDetailsCard />
                 </div>

@@ -7,7 +7,7 @@ import deleteProduct from "./functions/deleteFromCart";
 const UserContext = createContext()
 
 const UserContextProvider = ({children}) => {
-    const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : []})
+    const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : [],showLoginAlert : false})
     console.log("user context state",state)
     return(
         <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity,deleteProduct}}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useUser } from '../context/user-context'
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
     const {state} = useUser()
@@ -13,7 +14,7 @@ const Nav = () => {
                 <input className = "input-field" placeholder="Please Enter Text" />
             </div>
             <div className = "flex gap-xl flex-center grow-1" >
-                <a href = "login.html"><button className="btn btn-secondary">Login</button></a>
+                <Link to = '/login'><button className="btn btn-secondary">Login</button></Link>
                 <i className="material-icons cursor-pointer" >favorite_border</i>
                 <div class = "icon badge">
 	                <span class="material-icons md-40">shopping_cart</span>
