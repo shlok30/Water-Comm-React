@@ -3,11 +3,14 @@ import Nav from '../components/nav'
 import CardWithOverlayText from '../components/card-text-overlay'
 import HorizontalCard from '../components/horizontal-card'
 import Footer from '../components/footer'
+import { useUser } from '../context/user-context'
 
 const Homepage = () => {
+    const {state : {showLoginAlert}} = useUser()
     return(
         <div>
             <Nav />
+            {showLoginAlert ? <div class="alert error"><strong>Error!</strong> You need to Login to use this Functionality!</div> : ""}
             <section className = "preview container center-block flex space-between m5-top">
                 <CardWithOverlayText category = "Fiction" />
                 <CardWithOverlayText category = "Horror" />
