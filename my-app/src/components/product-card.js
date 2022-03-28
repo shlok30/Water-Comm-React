@@ -1,6 +1,31 @@
 import React from 'react'
+import { useUser } from '../context/user-context'
+import { useNavigate } from 'react-router-dom'
 
-const ProductCard = ({title,author,price,category,rating}) => {
+const ProductCard = ({title,author,price,id,category,rating}) => {
+    const {state,dispatch,addToCart} = useUser()
+    const encodedToken = state.encodedToken
+    const navigate = useNavigate()
+    
+    const handleClick = (dispatch) => {
+        if(!encodedToken){                   //User is not logged in
+            //navigate('/login')
+            dispatch({type:"ALERT"})
+            setTimeout(() => dispatch({type : "ALERT"}),1000)
+        }
+        else{                                // User is logged in
+            if(prodExistsInCart.length > 0){// User is logged in and item has already been added to cart
+                navigate('/cart')
+            }
+            else{                            // User is logged in and item has not been added to cart
+                addToCart({id , title ,author, price},encodedToken,dispatch)
+            }
+        }  
+    }
+
+    //checking if product is already present in the cart
+    const prodExistsInCart = state.cart.filter((prod) => prod['_id'] === id)
+
     return(
         <div className="card-container ">
             <div className="img-container badge">
