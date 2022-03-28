@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import CartCard from '../components/cart-card'
 import Footer from '../components/footer'
 import Nav from '../components/nav'
@@ -15,6 +16,7 @@ const CartPage = () => {
     return(
         <div style = {{height : "100vh",position : "relative"}}>
             <Nav />
+            <Link to = "/products" className='router-link padding-m'>Back to Products</Link>
             <div className="text-m center-text m5-top bold">My Cart</div>
             {cart.length > 0 ? 
             <div className = "container center-block m5-top flex space-between flex-center">
