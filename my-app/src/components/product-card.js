@@ -21,7 +21,7 @@ const ProductCard = ({title,author,price,category,rating}) => {
                 <p className="card-subtext">Rs {price}</p>
             </div>
             <div className="card-footer flex space-between m3-top">
-                <button className = "btn btn-secondary full-width"><a href="cart.html">Go to Cart</a></button>
+                <button className = {prodExistsInCart.length > 0 ? "btn btn-success full-width" : "btn btn-primary full-width"} onClick = {() => handleClick(dispatch)}>{prodExistsInCart.length > 0 ? "Go to Cart" : "Add to Cart"}</button>
             </div>
         </div>
     )
