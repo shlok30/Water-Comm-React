@@ -1,11 +1,13 @@
 import React from 'react'
 import { useProduct } from '../context/product-context'
 import { useProductListFunction } from '../context/product-listing-context'
+import { useUser } from '../context/user-context'
 import ProductCard from './product-card'
 
 const Main = () => {
     const {productsList} = useProduct()
     const {state,dispatch} = useProductListFunction()
+    const {state :{showLoginAlert}} = useUser()
     const renderProducts = (prodList) => {
         return prodList.map((prod) => <ProductCard key = {prod['_id']} title = {prod.title} author = {prod.author} price = {prod.price} id = {prod['_id']} category = {prod.categoryName} rating = {prod.rating}/>)
     }
@@ -29,7 +31,8 @@ const Main = () => {
     return(
         <main className = "main-content padding-m grow-1">
             <strong>Showing All Products</strong>
-            <div className = "container center-block flex gap-m space-between">
+            {showLoginAlert ? <div class="alert error"><strong>Error!</strong> You need to Login to use this Functionality!</div> : ""}
+            <div className = "container center-block flex gap-m space-around">
                 {renderProducts(sortedList)}
             </div>
         </main>

@@ -58,3 +58,9 @@
 a{
   color:white
 }
+
+.router-link{
+  color : var(--primary-color);
+  display: inline-block;
+  text-decoration: underline;
+}
