@@ -6,10 +6,9 @@ import ProductsListing from "./pages/products";
 import LoginPage from './pages/login'
 import Mockman from "mockman-js"
 import CartPage from "./pages/cart";
+import WishlistPage from "./pages/wishlist";
 
 function App() {
-  const {productsList} = useProduct()
-  console.log("This is state",productsList)
   return (
     <div className="App">
       <Routes>
@@ -18,6 +17,7 @@ function App() {
         <Route path = "/login" element = {<LoginPage />} />
         <Route path = "/mockman" element = {<Mockman />} />
         <Route path = "/cart" element = {<CartPage />} />
+        <Route path = "/wishlist" element = {<WishlistPage />} />
       </Routes>
     </div>
   );

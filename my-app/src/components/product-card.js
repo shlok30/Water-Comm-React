@@ -1,15 +1,15 @@
 import React from 'react'
 import { useUser } from '../context/user-context'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate , useLocation } from 'react-router-dom'
 
 const ProductCard = ({title,author,price,id,category,rating}) => {
-    const {state,dispatch,addToCart} = useUser()
+    const {state,dispatch,addToCart,addToWishlist,removeFromWishlist} = useUser()
     const encodedToken = state.encodedToken
     const navigate = useNavigate()
-    
+    const location = useLocation()
+
     const handleClick = (dispatch) => {
         if(!encodedToken){                   //User is not logged in
-            //navigate('/login')
             dispatch({type:"ALERT"})
             setTimeout(() => dispatch({type : "ALERT"}),1000)
         }
@@ -18,13 +18,34 @@ const ProductCard = ({title,author,price,id,category,rating}) => {
                 navigate('/cart')
             }
             else{                            // User is logged in and item has not been added to cart
-                addToCart({id , title ,author, price},encodedToken,dispatch)
+                addToCart({id , title ,author, price, category, rating},encodedToken,dispatch)
             }
         }  
     }
 
+    const handleWishlistButton = (e) => {
+        const typeOfAction = e.target.innerText
+        if(!encodedToken){
+            dispatch({type:"ALERT"})
+            setTimeout(() => dispatch({type : "ALERT"}),1000)
+        }
+        if(typeOfAction === "Go to Wishlist"){
+            navigate('/wishlist')
+        }
+        else if(typeOfAction === "Add to Wishlist"){
+            addToWishlist({_id : id ,title,author,price,category,rating},encodedToken,dispatch)
+        }
+        else{
+            removeFromWishlist(id,encodedToken,dispatch)
+        }
+        
+    }
+
     //checking if product is already present in the cart
     const prodExistsInCart = state.cart.filter((prod) => prod['_id'] === id)
+
+    //checking if product is already present in wishlist
+    const prodExistsInWishlist = state.wishlist.filter((prod) => prod['_id'] === id)
 
     return(
         <div className="card-container ">
@@ -47,6 +68,9 @@ const ProductCard = ({title,author,price,id,category,rating}) => {
             </div>
             <div className="card-footer flex space-between m3-top">
                 <button className = {prodExistsInCart.length > 0 ? "btn btn-success full-width" : "btn btn-primary full-width"} onClick = {() => handleClick(dispatch)}>{prodExistsInCart.length > 0 ? "Go to Cart" : "Add to Cart"}</button>
+            </div>
+            <div className="card-footer flex space-between m1-top">
+                <button className = "btn btn-error full-width" onClick = {handleWishlistButton}>{location.pathname === "/wishlist" ? "Remove from Wishlist" : prodExistsInWishlist.length > 0 ? "Go to Wishlist" : "Add to Wishlist"}</button>
             </div>
     </div>
     )

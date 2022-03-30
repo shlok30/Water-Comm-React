@@ -3,7 +3,6 @@ import { useProductListFunction } from '../../context/product-listing-context'
 
 const Categories = ({categories}) => {
     const {state,dispatch} = useProductListFunction()
-    console.log("Category prop",categories)
     return(
         <div>
             <div className = "padding-s-block m2-top">

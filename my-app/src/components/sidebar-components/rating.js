@@ -3,7 +3,6 @@ import { useProductListFunction } from '../../context/product-listing-context'
 
 const Rating = ({rating}) => {
     const {state,dispatch} = useProductListFunction()
-    //console.log("Rating state",state.rating)
     return(
         <div>
             <div className = "padding-s-block m2-top flex">

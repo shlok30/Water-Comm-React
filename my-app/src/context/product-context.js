@@ -5,7 +5,7 @@ const ProductContext = createContext()
 const ProductProvider = ({children}) => {
     const [productsList , setProductsList] = useState([])
     useEffect(()=>{
-        console.log("Component is mounted")
+    
         fetch('/api/products')
             .then((res) => res.json())
             .then(({products}) => setProductsList([...products]))
