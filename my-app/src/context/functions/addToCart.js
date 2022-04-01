@@ -4,7 +4,7 @@ import axios from "axios"
 const addToCart = ({id,title,author,price,category,rating},encodedToken,dispatch) => {
    
     axios
-     .post("/api/user/cart",{"product" : { "_id" : id , "title" : title , "author" : author , "price" : price , "category" : category , "rating" : rating}},{headers :{ 'authorization' : encodedToken}})
+     .post("/api/user/cart",{"product" : { "_id" : id , title ,  author ,  price , category ,  rating}},{headers :{ 'authorization' : encodedToken}})
      .then((res) => {
         console.log("it was a success",res.data.cart)
         dispatch({type : "CART" , payload : res.data.cart} )
