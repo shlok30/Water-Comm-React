@@ -14,7 +14,7 @@ const WishlistPage = () => {
             <Link to = "/products" className='router-link padding-m'>Back to Products</Link>
             <div class = "primary-text bold text-m center-text m3-top">My Wishlist</div>
             <div class="container center-block m5-top flex gap-m space-around" style = {{position: "relative"}}>
-                {wishlist.lenght === 0 ? <div className="text-m center-text m5-top bold">No Items in Wishlist</div> : null}
+                {wishlist.length === 0 ? <div className="text-m center-text m5-top bold">No Items in Wishlist</div> : null}
                 {renderProductCards()}
             </div>
             <Footer />
