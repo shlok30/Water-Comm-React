@@ -14,10 +14,13 @@ const WishlistPage = () => {
             <Link to = "/products" className='router-link padding-m'>Back to Products</Link>
             <div class = "primary-text bold text-m center-text m3-top">My Wishlist</div>
             <div class="container center-block m5-top flex gap-m space-around" style = {{position: "relative"}}>
-                {wishlist.length === 0 ? <div className="text-m center-text m5-top bold">No Items in Wishlist</div> : null}
+                {wishlist.length === 0 ? 
+                <div className="container center-block m5-top flex flex-center"> 
+                    <div className="text-m center-text m5-top bold">No Items in Wishlist</div> 
+                </div> : null}
                 {renderProductCards()}
             </div>
-            <Footer />
+            <Footer lengthOfItems = {wishlist.length} />
         </div>
         
     )

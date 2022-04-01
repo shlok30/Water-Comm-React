@@ -30,7 +30,7 @@ const CartPage = () => {
             </div>
             }
             
-            <Footer />
+            <Footer lengthOfItems = {cart.length} />
         </div>
     )
 }
