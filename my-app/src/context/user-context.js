@@ -3,14 +3,16 @@ import userReducer from "./reducers/userReducer";
 import addToCart from "./functions/addToCart";
 import updateQuantity from "./functions/updateQuantityInCart";
 import deleteProduct from "./functions/deleteFromCart";
+import addToWishlist from "./functions/addToWishlist";
+import removeFromWishlist from "./functions/removeFromWishlist";
 
 const UserContext = createContext()
 
 const UserContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(userReducer,{encodedToken : "" , cart : [] , wishlist : [],showLoginAlert : false})
-    console.log("user context state",state)
+
     return(
-        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity,deleteProduct}}>
+        <UserContext.Provider value = {{state , dispatch , addToCart , updateQuantity,deleteProduct ,addToWishlist, removeFromWishlist }}>
             {children}
         </UserContext.Provider>
     )

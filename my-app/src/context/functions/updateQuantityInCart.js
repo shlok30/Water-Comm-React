@@ -2,9 +2,7 @@ import React from 'react'
 import axios from "axios"
 
 const updateQuantity = (id,encodedToken,updateType,dispatch,qty) => {
-    //console.log(encodedToken)
     if(qty === 1 && updateType === 'decrement'){
-        console.log("Landed in danger zone")
         return
     }
     else{
