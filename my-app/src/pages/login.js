@@ -13,14 +13,12 @@ const LoginPage = () => {
 
     const navigate = useNavigate()
 
-    console.log("User Context" , state )
-
     const handleClick = () => {
-        console.log({email,password})
+        
         axios
          .post("/api/auth/login",{email,password})
          .then(res => {
-            console.log("It was a success",res)
+            console.log("Login success, here is the user data in db",res.data)
             dispatch({type : "TOKEN" , payload : res.data.encodedToken})
             dispatch({type : "CART" ,  payload : res.data.foundUser.cart})
             dispatch({type:"WISHLIST" , payload : res.data.foundUser.wishlist})
@@ -30,7 +28,7 @@ const LoginPage = () => {
          
     }
 
-    console.log("Email",email,"Password",password)
+    
     return(
         <div>
             <Nav />

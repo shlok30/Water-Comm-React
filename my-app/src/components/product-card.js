@@ -29,15 +29,19 @@ const ProductCard = ({title,author,price,id,category,rating}) => {
             dispatch({type:"ALERT"})
             setTimeout(() => dispatch({type : "ALERT"}),1000)
         }
-        if(typeOfAction === "Go to Wishlist"){
-            navigate('/wishlist')
-        }
-        else if(typeOfAction === "Add to Wishlist"){
-            addToWishlist({_id : id ,title,author,price,category,rating},encodedToken,dispatch)
-        }
         else{
-            removeFromWishlist(id,encodedToken,dispatch)
+            
+            if(typeOfAction === "Go to Wishlist"){
+                navigate('/wishlist')
+            }
+            else if(typeOfAction === "Add to Wishlist"){
+                addToWishlist({_id : id ,title,author,price,category,rating},encodedToken,dispatch)
+            }
+            else{
+                removeFromWishlist(id,encodedToken,dispatch)
+            }
         }
+        
         
     }
 
