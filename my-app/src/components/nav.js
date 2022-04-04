@@ -1,9 +1,11 @@
 import React from 'react'
 import { useUser } from '../context/user-context'
 import { Link ,useNavigate } from 'react-router-dom'
+import { useProductListFunction } from '../context/product-listing-context'
 
 const Nav = () => {
-    const {state,showLoginAlert,dispatch} = useUser()
+    const {state,dispatch} = useUser()
+    const productListingObj = useProductListFunction()
     const navigate = useNavigate()
     const sumOfItems = (sum,curr) => sum + curr.qty
     const numberOfCartItems = state.cart.reduce(sumOfItems,0)
@@ -31,7 +33,7 @@ const Nav = () => {
             </div>
             <div className = "flex gap-xl flex-center grow-1" >
                 <Link to = '/login'><button className="btn btn-secondary">Login</button></Link>
-                <Link to = '/products' className='product-link'>Product Listing</Link>
+                <Link to = '/products' className='product-link' onClick = {() => productListingObj.dispatch({type : "RESET"})}>Product Listing</Link>
                 <div class = "icon badge" onClick = {handleClick} style = {{cursor : "pointer"}}>
                     <span className="material-icons md-40" >favorite_border</span>
                     <span class = "number top-right">{numberOfWishlistItems}</span>
