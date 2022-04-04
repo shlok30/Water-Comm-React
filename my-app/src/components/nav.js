@@ -31,6 +31,7 @@ const Nav = () => {
             </div>
             <div className = "flex gap-xl flex-center grow-1" >
                 <Link to = '/login'><button className="btn btn-secondary">Login</button></Link>
+                <Link to = '/products' className='product-link'>Product Listing</Link>
                 <div class = "icon badge" onClick = {handleClick} style = {{cursor : "pointer"}}>
                     <span className="material-icons md-40" >favorite_border</span>
                     <span class = "number top-right">{numberOfWishlistItems}</span>
