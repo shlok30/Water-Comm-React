@@ -25,6 +25,15 @@ const Nav = () => {
         }
 
     }
+
+    const handleUserStatus = (status) => {
+        if(status === "Login"){
+            navigate("/login")
+        }
+        else{
+            dispatch({type:"LOGOUT"})
+        }
+    }
     return(
         <nav className = "navigation flex gap-xl align-center full-width">
             <div className="nav-brand"><Link to = "/">Water-Commerce</Link></div>
@@ -32,7 +41,7 @@ const Nav = () => {
                 <input className = "input-field" placeholder="Please Enter Text" />
             </div>
             <div className = "flex gap-xl flex-center grow-1" >
-                <Link to = '/login'><button className="btn btn-secondary">Login</button></Link>
+                <button className="btn btn-secondary" onClick = {(e) => handleUserStatus(e.target.innerText)}>{state.encodedToken ? "Logout" : "Login"}</button>
                 <Link to = '/products' className='product-link' onClick = {() => productListingObj.dispatch({type : "RESET"})}>Product Listing</Link>
                 <div class = "icon badge" onClick = {handleClick} style = {{cursor : "pointer"}}>
                     <span className="material-icons md-40" >favorite_border</span>
