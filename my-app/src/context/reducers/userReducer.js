@@ -10,6 +10,8 @@ const userReducer = (state,{type,payload}) => {
             return {...state,wishlist : [...payload]}
         case "ALERT":
             return{...state,showLoginAlert : !state.showLoginAlert}
+        case "LOGOUT":
+            return {...state, encodedToken : "" , cart : [] , wishlist : [],showLoginAlert : false}
         default:
             break
 

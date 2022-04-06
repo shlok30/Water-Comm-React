@@ -13,7 +13,7 @@ const updateQuantity = (id,encodedToken,updateType,dispatch,qty) => {
             }
       },{headers : { 'authorization' : encodedToken}})
         .then((res) => {
-            console.log("It was a success",res.data.cart)
+            //console.log("It was a success",res.data.cart)
             dispatch({type : "CART" , payload : res.data.cart} )
         })
         .catch(err => console.log(err))

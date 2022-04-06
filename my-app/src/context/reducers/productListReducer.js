@@ -13,6 +13,8 @@ const productListReducer = (state,{type,payload}) => {
             return ({...state,priceRange: payload})
         case "RESET":
             return ({...state,sorting : "",rating : "", priceRange : 1000 , category : {fiction : true , 'non-fiction' : true , horror: true}})
+        case "CATEGORY_RESET":
+            return ({...state , category : {fiction : false , 'non-fiction' : false , horror : false}})
         default:
             break;
     }

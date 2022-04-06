@@ -1,7 +1,7 @@
 import React from 'react'
 import { useUser } from '../context/user-context'
 
-const CartCard = ({qty,price,author,id,title}) => {
+const CartCard = ({qty,price,author,id,title,rating,category}) => {
     const {state,updateQuantity,dispatch,deleteProduct,addToWishlist,removeFromWishlist} = useUser()
     const encodedToken = state.encodedToken
     const itemExistsInWishlist = state.wishlist.filter((prod) => prod['_id'] === id)
@@ -9,7 +9,7 @@ const CartCard = ({qty,price,author,id,title}) => {
     const handleWishlistButton = (e) => {
         const actionType = e.target.innerText
         if(actionType === "Add to Wishlist"){
-            addToWishlist({_id: id , title ,author, price},encodedToken,dispatch)
+            addToWishlist({_id: id , title ,author, price , rating ,category},encodedToken,dispatch)
         }
         else{
             removeFromWishlist(id,encodedToken,dispatch)

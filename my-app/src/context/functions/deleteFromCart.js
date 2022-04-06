@@ -6,7 +6,7 @@ const deleteProduct = (id,encodedToken,dispatch) => {
     axios
     .delete(`/api/user/cart/${id}`,{headers : { 'authorization' : encodedToken}})
     .then((res) => {
-        console.log("Successfully Deleted",res.data)
+        //console.log("Successfully Deleted",res.data)
         dispatch({type : "CART" , payload : res.data.cart} )
     })
     .catch(err => console.log(err))

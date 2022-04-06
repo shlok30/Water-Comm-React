@@ -5,6 +5,7 @@ const ProductListingContext = createContext()
 
 const ProductListingContextProvider = ({children}) => {
     const [state , dispatch] = useReducer(productListReducer,{category : {fiction : true , 'non-fiction' : true , horror: true} , rating : "" , sorting : "" , priceRange : 1000})
+
     return(
         <ProductListingContext.Provider value = {{state,dispatch}} >
             {children}
