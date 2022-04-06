@@ -18,7 +18,7 @@ const LoginPage = () => {
         axios
          .post("/api/auth/login",{email,password})
          .then(res => {
-            console.log("Login success, here is the user data in db",res.data)
+            //console.log("Login success, here is the user data in db",res.data)
             dispatch({type : "TOKEN" , payload : res.data.encodedToken})
             dispatch({type : "CART" ,  payload : res.data.foundUser.cart})
             dispatch({type:"WISHLIST" , payload : res.data.foundUser.wishlist})
