@@ -25,7 +25,7 @@ Password : test
 - Product Listing page with dynamic rendering of Products from API
 - Filtering and Sorting functionality on the Product Listing Page
 - Cart Management (Add to cart, +/- items in cart, remove from cart, add to wishlist from cart)
-- Wishlist Management (Add / remove from the wishlist, move items to cart)
+- Wishlist Management (Add / remove from the wishlist, add items to cart)
 - Allowing only logged in users to add to cart/wishlist by showing error alert to non-logged in users
 
 
