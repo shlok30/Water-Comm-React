@@ -54,7 +54,7 @@ const LoginPage = () => {
 
                 <button className="btn btn-secondary full-width m2-top" onClick = {handleClick}>Login</button>
                 <div className = "m2-top">
-                    <a href="signup.html" className = "primary-text">Create New Account?</a>
+                    <a href="" className = "primary-text">Create New Account?</a>
                 </div>
             </div>
         </div>
