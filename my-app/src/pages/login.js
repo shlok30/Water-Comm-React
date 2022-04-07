@@ -36,11 +36,11 @@ const LoginPage = () => {
                 <div className = "primary-text center-text text-m bold">Login</div>
                 <div className = "padding-s">
                     <label htmlFor="demo" className="input-label">Email Address</label>
-                    <input type = "email" id = "demo" className = "input-field m2-top full-width" style = {{display:'block',width:'100%'}} placeholder="Please Enter Email Here" value = {email} onChange = {(e) => setEmail(e.target.value)} />
+                    <input type = "email" id = "demo" className = "input-field m2-top full-width" style = {{display:'block',width:'100%'}} placeholder="test@gmail.com" value = {email} onChange = {(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="padding-s flex flex-column">
                     <label htmlFor="demo1" className="input-label">Enter Password</label>
-                    <input type = "password" id = "demo1" className = "input-field m2-top full-width" style = {{display:'block',width:'100%'}}  placeholder="Please Enter Password Here" value = {password} onChange = {(e) => setPassword(e.target.value)} />
+                    <input type = "password" id = "demo1" className = "input-field m2-top full-width" style = {{display:'block',width:'100%'}}  placeholder="test" value = {password} onChange = {(e) => setPassword(e.target.value)} />
                 </div>
             
     
