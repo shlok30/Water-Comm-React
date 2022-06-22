@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const WishlistPage = () => {
     const {state : {wishlist}} = useUser()
-    const renderProductCards = () => wishlist.map(({_id,title,author,price,category,rating}) => <ProductCard title = {title} id = {_id} author = {author} price = {price} key = {_id} category = {category} rating = {rating} /> ) 
+    const renderProductCards = () => wishlist.map(({_id,title,author,price,category,rating,thumbnail}) => <ProductCard title = {title} id = {_id} author = {author} price = {price} key = {_id} category = {category} rating = {rating} thumbnail = {thumbnail} /> ) 
     return(
         <div>
             <Nav />

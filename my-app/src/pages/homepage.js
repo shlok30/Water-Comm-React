@@ -23,8 +23,8 @@ const Homepage = () => {
                 </div>
             </section>
             <section className = "cards-preview container center-block flex gap-m m5-top" >
-                <HorizontalCard title = "The Godfather"/>
-                <HorizontalCard title = "Think and Grow Rich" />
+                <HorizontalCard title = "The Godfather" thumbnail = "https://images-na.ssl-images-amazon.com/images/I/714ZOEiVNtL._RI_.jpg"/>
+                <HorizontalCard title = "Think and Grow Rich" thumbnail = "https://images-na.ssl-images-amazon.com/images/I/71AdHA+qqwL.jpg" />
             </section>
             <Footer />
         </div>

@@ -68,3 +68,11 @@ a{
 .product-link{
   color : var(--white-bg-color)
 }
+
+.align-start{
+  align-items: flex-start;
+}
+
+.fixed-img-height{
+  height: 15rem;
+}
