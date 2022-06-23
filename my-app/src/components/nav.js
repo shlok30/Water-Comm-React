@@ -36,10 +36,7 @@ const Nav = () => {
     }
     return(
         <nav className = "navigation flex gap-xl align-center full-width">
-            <div className="nav-brand"><Link to = "/">Water-Commerce</Link></div>
-            <div className = "input-wrapper flex grow-1 flex-center" >
-                <input className = "input-field" placeholder="Please Enter Text" />
-            </div>
+            <div className="nav-brand grow-1"><Link to = "/">Water-Commerce</Link></div>
             <div className = "flex gap-xl flex-center grow-1" >
                 <button className="btn btn-secondary" onClick = {(e) => handleUserStatus(e.target.innerText)}>{state.encodedToken ? "Logout" : "Login"}</button>
                 <Link to = '/products' className='product-link' onClick = {() => productListingObj.dispatch({type : "RESET"})}>Product Listing</Link>
